@@ -9,12 +9,18 @@
   </head>
   <body>
     <div class="container">
-      <%- include('layout/header') -%>
+      <%- include('partials/header') -%>
       <main>
+        <div class="breadcum">
+          <a href="/">Home</a>
+          >
+          <a>Services</a>
+        </div>
         <h1>Services</h1>
         <p>- Build SEO-friendly websites</p>
         <p>- Design websites with UI/UX standards</p>
       </main>
+      <%- include('partials/footer') -%>
     </div>
   </body>
 </html>

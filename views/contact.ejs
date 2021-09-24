@@ -9,11 +9,26 @@
   </head>
   <body>
     <div class="container">
-      <%- include('layout/header') -%>
+      <%- include('partials/header') -%>
       <main>
-        <h1>Hire Me</h1>
-        <p>Contact me via email: trandinhtu.dev@gmail.com</p>
+        <div class="breadcum">
+          <a href="/">Home</a>
+          >
+          <a>Contact</a>
+        </div>
+
+        <h1>Contact Me</h1>
+        <form>
+          <label for="firstName">First Name</label>
+          <input type="text" name="firstName" id="firstName" />
+          <label for="lastName">Last Name</label>
+          <input type="text" name="lastName" id="lastName" />
+          <label for="message">Message</label>
+          <textarea placeholder="Your message..." id="message"></textarea>
+          <a href="/" class="btn">Send</a>
+        </form>
       </main>
+      <%- include('partials/footer') -%>
     </div>
   </body>
 </html>

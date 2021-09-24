@@ -9,11 +9,16 @@
   </head>
   <body>
     <div class="container">
-      <%- include('layout/header') -%>
+      <%- include('partials/header') -%>
       <main>
+        <div class="breadcum">
+          <a href="/">Home</a>
+          >
+          <a>Projects</a>
+        </div>
         <h1>Projects</h1>
         <div class="project-container">
-          <h2>Full stack: 📷 E-commerce store</h2>
+          <h2>Full Stack: 📷 E-commerce store</h2>
           <p>
             Tech Stacks: Ant Design UI, Reactjs, React-Query, MongoDB,
             Nodejs/Expressjs, Stripe Checkout
@@ -23,17 +28,21 @@
             Authentication/Authorization
           </p>
           <p>Hosting: Heroku</p>
-          <a href="https://onlinecamstore.herokuapp.com/" target="__blank"
+          <a
+            href="https://onlinecamstore.herokuapp.com/"
+            target="__blank"
+            class="btn"
             >Live site</a
           >
           <a
             href="https://github.com/tutran-se/camstore-full-v2"
             target="__blank"
+            class="btn"
             >Github</a
           >
         </div>
         <div class="project-container">
-          <h2>Full stack: 🔥 Coding Academy</h2>
+          <h2>Full Stack: 🔥 Coding Academy</h2>
           <p>
             Tech Stacks: Chakra UI, Nextjs, GraphQL, Strapi Headless CMS,
             Sendgrid, Stripe Checkout
@@ -46,30 +55,36 @@
           <a
             href="https://online-coding-academy-v1.vercel.app/"
             target="__blank"
+            class="btn"
             >Live site</a
           >
           <a
             href="https://github.com/tutran-se/coding-academy-client"
             target="__blank"
+            class="btn"
             >Github</a
           >
         </div>
         <div class="project-container">
-          <h2>Full stack: 💡 Realtime Blog</h2>
+          <h2>Full Stack: 💡 Realtime Blog</h2>
           <p>Tech Stacks: Pure HTML/CSS, Reactjs, Firebase</p>
           <p>
             Main Features: Real-time CRUD Post, Like, Comment, Notification,
             Firebase Google OAuth
           </p>
           <p>Hosting: : Firebase Hosting Service</p>
-          <a href="https://realtimeblogapp.com/" target="__blank">Live site</a>
+          <a href="https://realtimeblogapp.com/" target="__blank" class="btn"
+            >Live site</a
+          >
           <a
             href="https://github.com/tutran-se/real-time-blog-v2"
+            class="btn"
             target="__blank"
             >Github</a
           >
         </div>
       </main>
+      <%- include('partials/footer') -%>
     </div>
   </body>
 </html>

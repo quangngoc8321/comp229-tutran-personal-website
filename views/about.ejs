@@ -9,16 +9,22 @@
   </head>
   <body>
     <div class="container">
-      <%- include('layout/header') -%>
+      <%- include('partials/header') -%>
       <main>
+        <div class="breadcum">
+          <a href="/">Home</a>
+          >
+          <a>About Me</a>
+        </div>
         <h1>About Me</h1>
         <img
           src="https://lh3.googleusercontent.com/ogw/ADea4I4idDMZ1p0PkW-DeFdv0iTbS4ycf3GX5Rx3IoUftQ=s32-c-mo"
           alt="face"
         />
         <p>My name is Tu Tran. I'm a full-stack software developer</p>
-        <a href="/resume.pdf">See my resume</a>
+        <a href="/resume.pdf" class="btn">→ View My Resume</a>
       </main>
+      <%- include('partials/footer') -%>
     </div>
   </body>
 </html>
