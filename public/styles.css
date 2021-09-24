@@ -65,6 +65,7 @@ form {
   text-decoration: none;
   align-self: flex-start;
   margin-top: 1rem;
+  border-radius: 3px;
 }
 input {
   padding: 1.5rem;
