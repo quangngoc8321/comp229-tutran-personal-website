@@ -7,13 +7,14 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 
 const Contact = require("../models/Contact");
-// const { isAuthenticated } = require("../middlewares/isAuthenticated");
 const Router = express.Router();
 
+// Render Contact List View
 Router.get("/contact-list", async (req, res) => {
   res.render("contact-list");
 });
 
+// Get all contact datas
 Router.post("/contact-list", async (req, res) => {
   try {
     const { token } = req.body;
@@ -32,6 +33,7 @@ Router.post("/contact-list", async (req, res) => {
   }
 });
 
+// Update a contact record
 Router.put("/contact-update/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -44,6 +46,7 @@ Router.put("/contact-update/:id", async (req, res) => {
   }
 });
 
+// Get a  contact record
 Router.get("/contact-update/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -54,6 +57,7 @@ Router.get("/contact-update/:id", async (req, res) => {
   }
 });
 
+// Delete a contact record
 Router.delete("/contact-list/:id", async (req, res) => {
   try {
     const { id } = req.params;
