@@ -27,7 +27,7 @@
         // console.log(token);
         const fetchContactList = async () => {
           try {
-            const response = await fetch("http://localhost:3000/contact-list", {
+            const response = await fetch(window.location.href, {
               method: "POST",
               headers: {
                 Accept: "application/json",
