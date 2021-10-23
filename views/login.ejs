@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <%- include('partials/header') -%>
+      <main>
+        <div class="breadcum">
+          <a href="/">Home</a>
+          >
+          <a>Login</a>
+        </div>
+
+        <h1>Login</h1>
+        <form id="login-form">
+          <label for="username">User Name</label>
+          <input type="text" name="username" id="username" />
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" />
+          <button class="btn" id="login-button" type="button">Login</button>
+
+          <div class="error" id="error"></div>
+        </form>
+      </main>
+
+      <script>
+        const button = document.querySelector("#login-button");
+        const form = document.querySelector("#login-form");
+        const error = document.querySelector("#error");
+        const loginHandler = async () => {
+          try {
+            const username = form.username.value;
+            const password = form.password.value;
+            const response = await fetch("http://localhost:3000/login", {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ username, password }),
+            });
+            if (response.ok) {
+              const data = await response.json();
+              localStorage.setItem("token", data.token);
+              window.location.href = "/contact-list";
+            } else {
+              // Handle errors
+              const text = await response.text();
+              const message = JSON.parse(text).message;
+              error.textContent = "👋 " + message;
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        button.addEventListener("click", loginHandler);
+      </script>
+      <%- include('partials/footer') -%>
+    </div>
+  </body>
+</html>

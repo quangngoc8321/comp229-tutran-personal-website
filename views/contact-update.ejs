@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Me</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <%- include('partials/header') -%>
+      <main>
+        <div class="breadcum">
+          <a href="/">Home</a>
+          >
+          <a href="/contact-list">Contact List</a>
+          >
+          <a>Contact Update</a>
+        </div>
+
+        <h1>Contact Update</h1>
+        <form id="update-form">
+          <label for="name">Contact Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            value="<%= contact.name %>"
+          />
+          <label for="number">Contact Number</label>
+          <input
+            type="text"
+            name="number"
+            id="number"
+            value="<%= contact.number %>"
+          />
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value="<%= contact.email %>"
+          />
+          <button class="btn" id="update-button" type="button">Update</button>
+          <button class="btn btn-cancel" id="cancel-button" type="button">
+            Cancel
+          </button>
+        </form>
+      </main>
+      <script>
+        const button = document.querySelector("#update-button");
+        const cancelButton = document.querySelector("#cancel-button");
+
+        const form = document.querySelector("#update-form");
+        const updateHandler = async () => {
+          try {
+            const name = form.name.value;
+            const number = form.number.value;
+            const email = form.email.value;
+            const response = await fetch(window.location.href, {
+              method: "PUT",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ name, number, email }),
+            });
+            await response.json();
+            window.location.href = "/contact-list";
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        button.addEventListener("click", updateHandler);
+
+        cancelButton.addEventListener("click", () => {
+          window.location.href = "/contact-list";
+        });
+      </script>
+      <%- include('partials/footer') -%>
+    </div>
+  </body>
+</html>

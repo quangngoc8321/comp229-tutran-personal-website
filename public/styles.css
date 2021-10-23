@@ -67,6 +67,9 @@ form {
   align-self: flex-start;
   margin-top: 1rem;
   border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
 }
 input {
   padding: 1.5rem;
@@ -104,4 +107,36 @@ footer {
 .breadcum {
   font-size: 1.4rem;
   color: rgb(122, 122, 122);
+}
+
+/* ERROR */
+div.error {
+  color: lightcoral;
+}
+/* LOGIN VIEW */
+
+/* CONTACT LIST VIEW */
+#list li {
+  list-style: none;
+  border: 1px dashed lightgreen;
+  padding: 1rem;
+  text-align: justify;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#list li button {
+  background-color: lightsalmon;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 1rem;
+  border: none;
+  cursor: pointer;
+}
+/* UPDATE LIST VIEW */
+
+.btn-cancel {
+  background-color: rgb(176, 182, 189);
+  color: white;
 }

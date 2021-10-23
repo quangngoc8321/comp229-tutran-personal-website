@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <%- include('partials/header') -%>
+
+      <main>
+        <div class="breadcum">
+          <a href="/">Home</a>
+          >
+          <a>Contact List</a>
+        </div>
+
+        <h1>Business Contact List</h1>
+        <div id="list"></div>
+      </main>
+      <script>
+        const list = document.querySelector("#list");
+        const token = localStorage.getItem("token");
+        // console.log(token);
+        const fetchContactList = async () => {
+          try {
+            const response = await fetch("http://localhost:3000/contact-list", {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: token && JSON.stringify({ token }),
+            });
+            // console.log(response);
+
+            if (response.ok) {
+              const data = await response.json();
+              const sortedContact = data.contacts.sort(function (a, b) {
+                var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+                var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+                if (nameA < nameB) {
+                  return -1;
+                }
+                if (nameA > nameB) {
+                  return 1;
+                }
+
+                // names must be equal
+                return 0;
+              });
+              let html = `<div>Total Records: ${sortedContact.length}`;
+
+              let arrayElements = sortedContact.map((item) => {
+                html += `<li><div>Contact Name: ${item.name} - Contact Number: ${item.number} - Email Address: ${item.email}</div><div> <a href="/contact-update/${item._id}" class="btn">Update</a> <button id="delete-button" data-id=${item._id}>Delete</button></div>`;
+              });
+
+              list.innerHTML = html;
+              const deleteBtns = document.querySelectorAll("#delete-button");
+              deleteBtns.forEach((button) => {
+                button.addEventListener("click", async (e) => {
+                  const id = e.target.getAttribute("data-id");
+                  const response = await fetch(
+                    window.location.href + `/${id}`,
+                    {
+                      method: "DELETE",
+                    }
+                  );
+                  await response.json();
+                  window.location.reload();
+                });
+              });
+            } else {
+              window.location.href = "/login";
+            }
+          } catch (error) {}
+        };
+        fetchContactList();
+      </script>
+      <%- include('partials/footer') -%>
+    </div>
+  </body>
+</html>
